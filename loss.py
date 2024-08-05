@@ -6,7 +6,7 @@ from torch.nn import functional as F
 class VGGLoss(nn.Module):
     def __init__(self):
         super().__init__()
-        self.vgg = vgg19(weights='DEFAULT').features[:36].eval()
+        self.vgg = vgg19(weights='DEFAULT').features[:35].eval()
         for param in self.vgg.parameters():
             param.requires_grad = False
             
