@@ -19,8 +19,7 @@ class ImageDataset(Dataset):
 
         self.transformer = T.Compose([
             T.ToTensor(),
-            T.Normalize(mean=[0.449, 0.424, 0.388], std=[0.304, 0.298, 0.305])
-        ])        
+        ])
 
         self.to_pil = T.ToPILImage()
 
