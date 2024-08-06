@@ -8,7 +8,7 @@ class DenseBlock(nn.Module):
         self.conv2 = nn.Conv2d(in_channels + growth_rate, growth_rate, kernel_size=3, padding=1)
         self.conv3 = nn.Conv2d(in_channels + 2 * growth_rate, growth_rate, kernel_size=3, padding=1)
         self.conv4 = nn.Conv2d(in_channels + 3 * growth_rate, growth_rate, kernel_size=3, padding=1)
-        self.conv5 = nn.Conv2d(in_channels + 4 * growth_rate, growth_rate, kernel_size=3, padding=1)
+        self.conv5 = nn.Conv2d(in_channels + 4 * growth_rate, in_channels, kernel_size=3, padding=1)
         self.leaky_relu = nn.LeakyReLU(0.2, inplace=True)
 
     def forward(self, x):
@@ -44,10 +44,10 @@ class Generator(nn.Module):
         self.conv3 = nn.Conv2d(hidden_channels, out_channels, kernel_size=3, padding=1)
         
         self.upsample = nn.Sequential(
-            nn.Conv2d(growth_rate, growth_rate * 4, kernel_size=3, padding=1),
+            nn.Conv2d(hidden_channels, hidden_channels * 4, kernel_size=3, padding=1),
             nn.PixelShuffle(2),
             nn.LeakyReLU(0.2, inplace=True),
-            nn.Conv2d(growth_rate, growth_rate * 4, kernel_size=3, padding=1),
+            nn.Conv2d(hidden_channels, hidden_channels * 4, kernel_size=3, padding=1),
             nn.PixelShuffle(2),
             nn.LeakyReLU(0.2, inplace=True)
         )
@@ -59,4 +59,3 @@ class Generator(nn.Module):
         out = self.upsample(out + out1)
         out = self.conv3(out)
         return out
-
