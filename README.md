@@ -1,1 +1,1 @@
-# ESRGAN-pytorch
+# Super-Resolution with ESRGAN
