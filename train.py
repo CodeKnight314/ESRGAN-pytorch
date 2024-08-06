@@ -14,7 +14,7 @@ def calculate_psnr(sr_img, hr_img):
     mse = torch.mean((sr_img - hr_img) ** 2)
     if mse == 0:
         return float('inf')
-    return 20 * math.log10(1.0 / math.sqrt(mse.item()))
+    return 20 * math.log10(4.0 / math.sqrt(mse.item()))
 
 def pretraining(generator, train_dl, opt_g, epochs, device, logger, save_dir):
     mse_criterion = torch.nn.MSELoss()
@@ -55,8 +55,8 @@ def train_esrgan(train_dl, valid_dl, save_dir, epochs, warmup, logger, device='c
     optimizer_g = opt.Adam(generator.parameters(), lr=2e-4, betas=(0.9, 0.999))
     optimizer_d = opt.Adam(discriminator.parameters(), lr=1e-4, betas=(0.9, 0.999))
     
-    scheduler_g = opt.lr_scheduler.CosineAnnealingLR(optimizer_g, T_max=int(epochs * 0.9), eta_min=6e-6)
-    scheduler_d = opt.lr_scheduler.CosineAnnealingLR(optimizer_d, T_max=int(epochs * 0.9), eta_min=6e-6)
+    scheduler_g = opt.lr_scheduler.MultiStepLR(optimizer_g, milestones=[3, 6, 13, 20], gamma=0.5)
+    scheduler_d = opt.lr_scheduler.MultiStepLR(optimizer_d, milestones=[3, 6, 13, 20], gamma=0.5)
     
     mse_criterion = torch.nn.MSELoss()
     bce_criterion = torch.nn.BCEWithLogitsLoss()
@@ -154,7 +154,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--root", type=str, required=True, help="root directory for imgs, requires train and val split")
     parser.add_argument("--save", type=str, required=True, help="save directory for weights and log files") 
-    parser.add_argument("--epochs", type=int, required=True, help="total epochs")
+    parser.add_argument("--epochs", type=int, required=False, default=30, help="total epochs")
     parser.add_argument("--warmup", type=int, required=True, help="total epochs for pretraining phase of epochs")
     parser.add_argument("--upscale", type=int, required=False, default=4, help="upscale factor to train ESRGAN on")
     
