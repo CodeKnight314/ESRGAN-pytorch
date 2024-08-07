@@ -35,6 +35,27 @@ This repository contains a simplistic implementation of ESRGAN (Enhanced Super-R
     ```bash
     pip install -r requirements.txt
     ```
+
+## Dataset Preparation
+
+Before training the model, you can use `dataset/prepare_dataset.sh` to download, extract, and organize the dataset.
+
+1. cd to the dataset directory address with below: 
+    ```bash
+    cd dataset
+    ```
+
+2. Make the script executable:
+
+    ```bash
+    chmod +x prepare_dataset.sh
+    ```
+
+3. Run the script:
+
+    ```bash
+    prepare_dataset.sh
+    ```
     
 ## Usage
 
@@ -73,25 +94,10 @@ Use the `train.py` script to train the ESRGAN model. It includes pretraining of 
 python train.py --root ./data --save ./checkpoints --epochs 30 --warmup 5 --upscale 4
 ```
 
-### Dataset Preparation
-
-Before training the model, you can use `ESRGAN_pytorch/dataset/prepare_dataset.sh` to download, extract, and organize the dataset.
-
-1. cd to the dataset directory address with below: 
-    ```bash
-    cd ESRGAN-pytorch/dataset
-    ```
-
-2. Make the script executable:
-
-    ```bash
-    chmod +x prepare_dataset.sh
-    ```
-
-3. Run the script:
-
-    ```bash
-    prepare_dataset.sh
-    ```
-
 ## Results
+
+Below are some example results:
+
+<p align="center">
+  <img src="resources/gif/combined.gif" alt="Switching between Low-Resolution and Super-Resolved Image">
+</p>
