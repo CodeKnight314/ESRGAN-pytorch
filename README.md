@@ -21,8 +21,7 @@ This repository contains a simplistic implementation of ESRGAN (Enhanced Super-R
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/yourusername/ESRGAN.git
-    cd ESRGAN
+    git clone https://github.com/CodeKnight314/ESRGAN-pytorch.git
     ```
 
 2. Create and activate a virtual environment (optional but recommended):
