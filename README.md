@@ -6,7 +6,7 @@ This repository contains a simplistic implementation of ESRGAN (Enhanced Super-R
 
 ## Results
 <p align="center">
-  <img src="resources/gif/combined.gif" alt="Switching between Low-Resolution and Super-Resolved Image" width="2040" height="1344">
+  <img src="resources/gif/combine.gif" alt="Switching between Low-Resolution and Super-Resolved Image">
 </p>
 
 ## Table of Contents
