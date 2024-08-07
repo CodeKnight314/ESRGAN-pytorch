@@ -20,8 +20,12 @@ def main(root_dir: str, output_dir: str, resize: bool):
     """
     device = "cuda" if torch.cuda.is_available() else "cpu"
     
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    weights_path = os.path.join(script_dir, "Weights/Best_generator.pth")
+    
     model = Generator().to(device)
-    model.load_state_dict(torch.load("Weights/Best_generator.pth", map_location=device))
+    model.load_state_dict(torch.load(weights_path, map_location=device))
+    model.eval()
     
     img_dir = sorted(glob(os.path.join(root_dir, "*")))
     
@@ -29,14 +33,15 @@ def main(root_dir: str, output_dir: str, resize: bool):
         img = Image.open(img_path).convert("RGB")
         
         img_tensor = T.ToTensor()(img).unsqueeze(0).to(device)
-        
-        sr_tensor = model(img_tensor)
+
+        with torch.no_grad():
+            sr_tensor = model(img_tensor)
         
         sr_tensor = (sr_tensor + 1) / 2
         
         sr_tensor = torch.clamp(sr_tensor, 0, 1)
         
-        sr_numpy = sr_tensor.squeeze(0).permute(1, 2, 0).cpu().numpy()
+        sr_numpy = sr_tensor.squeeze(0).permute(1, 2, 0).cpu().detach().numpy()
         
         sr_img = Image.fromarray((sr_numpy * 255).astype(np.uint8))
         
