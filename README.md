@@ -99,5 +99,5 @@ python train.py --root ./data --save ./checkpoints --epochs 30 --warmup 5 --upsc
 Below are some example results:
 
 <p align="center">
-  <img src="resources/gif/combined.gif" alt="Switching between Low-Resolution and Super-Resolved Image">
+  <img src="resources/gif/combined.gif" alt="Switching between Low-Resolution and Super-Resolved Image" width=2040 height=1404>
 </p>
