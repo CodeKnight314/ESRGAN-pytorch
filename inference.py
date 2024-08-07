@@ -5,7 +5,7 @@ from tqdm import tqdm
 from glob import glob
 from PIL import Image
 from torchvision import transforms as T
-from generator import Generator
+from ESRGAN.generator import Generator
 import matplotlib.pyplot as plt
 import numpy as np
 
