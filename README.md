@@ -4,13 +4,18 @@
 
 This repository contains a simplistic implementation of ESRGAN (Enhanced Super-Resolution Generative Adversarial Network) for super-resolving images. The code includes training and inference scripts to generate high-resolution images from low-resolution inputs using a pre-trained model.
 
+## Results
+<p align="center">
+  <img src="resources/gif/combined.gif" alt="Switching between Low-Resolution and Super-Resolved Image" width="2040" height="1344">
+</p>
+
 ## Table of Contents
+- [Results](#results)
 - [Installation](#installation)
 - [Usage](#usage)
   - [Inference](#inference)
   - [Training](#training)
   - [Dataset Preparation](#dataset-preparation)
-- [Results](#results)
 
 ## Installation
 
@@ -93,11 +98,3 @@ Use the `train.py` script to train the ESRGAN model. It includes pretraining of 
 ```bash
 python train.py --root ./data --save ./checkpoints --epochs 30 --warmup 5 --upscale 4
 ```
-
-## Results
-
-Below are some example results:
-
-<p align="center">
-  <img src="resources/gif/combined.gif" alt="Switching between Low-Resolution and Super-Resolved Image" width=2040 height=1344>
-</p>
