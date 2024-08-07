@@ -1,7 +1,7 @@
-from generator import Generator
-from discriminator import Discriminator
+from ESRGAN.generator import Generator
+from ESRGAN.discriminator import Discriminator
 from loss import VGGLoss
-from dataset import load_dataset
+from dataset.SR_IMG_Dataset import load_dataset
 import os
 from torch import optim as opt
 import torch
